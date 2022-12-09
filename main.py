@@ -6,6 +6,7 @@ if __name__ == '__main__':
         print('Выберите действие:')
         print('1 - Обучение')
         print('2 - Распознавание')
+        print('0 - Выход')
         menu = (input())
 
 
@@ -32,5 +33,7 @@ if __name__ == '__main__':
 
             recognize(model, matrix)
 
-        else:
+        elif int(menu) == 0:
             break
+        else:
+            pass
