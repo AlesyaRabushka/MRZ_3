@@ -49,18 +49,18 @@ def recognize(X, weight_matrix):
     while relax is not True:
         if iteration >= 1000:
             print('Невозможно распознать образ!')
-            print(matrix_transposition(previous_state))
-            print(matrix_transposition(current_state))
             exit()
 
-        m = matrix_multiplication(weight_matrix, (previous_state))
+        m = matrix_multiplication(weight_matrix, previous_state)
 
-        current_state = activation_function(m, previous_state)
+        current_state = activation_function(m)
 
         if functools.reduce(lambda x, y: x and y, map(lambda a, b: a == b, previous_state, current_state), True):
+        # if (previous_state == current_state).all():
             print('Образ распознан!')
+           # show_model(matrix_transposition(previous_state))
             show_model(matrix_transposition(current_state))
             relax = True
 
-        previous_state = (current_state)
+        previous_state = current_state
         iteration += 1
