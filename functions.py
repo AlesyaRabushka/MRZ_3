@@ -1,5 +1,6 @@
 from matrix_operations import *
 import numpy
+import math
 
 
 # write matrix into file.txt
@@ -106,12 +107,8 @@ def zero_main_diagonal(matrix):
 
 # activation function
 def activation_function(matrix, previous_state):
+    new_matrix = generate_matrix(len(matrix), len(matrix[0]))
     for row_index in range(len(matrix)):
         for col_index in range(len(matrix[0])):
-            if matrix[row_index][col_index] >= 0:
-                matrix[row_index][col_index] = 1
-            elif matrix[row_index][col_index] < 0:
-                matrix[row_index][col_index] = -1
-            # elif matrix[row_index][col_index] == 0:
-            #     matrix[row_index][col_index] = previous_state[row_index][col_index]
-    return matrix
+            new_matrix[row_index][col_index] = math.tanh(matrix[row_index][col_index])
+    return new_matrix
